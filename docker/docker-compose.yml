@@ -1,0 +1,10 @@
+version: '3'
+
+services:
+  ui:
+    image: ui:0.1
+    build:
+      context: ../
+      dockerfile: ./app/docker/Dockerfile
+    ports:
+      - "3001:80"
