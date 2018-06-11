@@ -1,4 +1,5 @@
 npm init
+
 git init
 touch .gitignore
 mkdir public dist src
