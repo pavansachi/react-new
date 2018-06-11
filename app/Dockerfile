@@ -12,16 +12,15 @@ apt-get install -y nodejs
 # check version
 RUN node -v
 
-ADD ./app/ ./tmp/app
-# ADD ./app/package.json /tmp/package.json
-# ADD ./app/webpack.config.prod.js /tmp/webpack.config.prod.js
-# ADD ./app/.babelrc /tmp/.babelrc
+ADD ./ ./tmp/app
 
-# RUN ls -R
+WORKDIR /tmp/app
+
+RUN ls -a
 
 RUN cd /tmp/app && npm install
 
-WORKDIR /tmp/app
+# WORKDIR /tmp/app
 
 # build bundle
 RUN npm run build
@@ -31,7 +30,7 @@ RUN ls -a
 # config
 WORKDIR /etc/nginx/conf.d/
 RUN rm default.conf
-COPY ./server/nginx/default.conf .
+COPY ./nginx.conf ./default.conf
 
 # ui artifacts
 WORKDIR /usr/share/nginx/html

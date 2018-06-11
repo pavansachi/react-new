@@ -4,7 +4,7 @@ services:
   ui:
     image: ui:0.1
     build:
-      context: ../
-      dockerfile: ./app/docker/Dockerfile
+      context: ./app
+      dockerfile: Dockerfile
     ports:
       - "3001:80"
