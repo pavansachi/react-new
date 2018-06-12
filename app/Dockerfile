@@ -1,16 +1,11 @@
-FROM nginx:1.15
+FROM nginx:1.15.0-alpine
 
 MAINTAINER Pavan Sachi
 
-# update
-RUN apt-get update && \
-apt-get install -y curl && \
-apt-get install -y gnupg2 && \
-curl -sL https://deb.nodesource.com/setup_8.x | bash - && \
-apt-get install -y nodejs
+RUN apk add --update yarn
 
 # check version
-RUN node -v
+RUN yarn --version
 
 ADD ./ ./tmp/app
 
@@ -18,14 +13,12 @@ WORKDIR /tmp/app
 
 RUN ls -a
 
-RUN cd /tmp/app && npm install
+RUN cd /tmp/app && yarn install
 
 # WORKDIR /tmp/app
 
 # build bundle
-RUN npm run build
-
-RUN ls -a
+RUN yarn run build
 
 # config
 WORKDIR /etc/nginx/conf.d/

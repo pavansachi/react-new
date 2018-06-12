@@ -1,0 +1,7 @@
+version: '3'
+
+services:
+  ui_test:
+    build:
+      context: ./app
+      dockerfile: test.Dockerfile

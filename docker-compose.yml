@@ -2,7 +2,6 @@ version: '3'
 
 services:
   ui:
-    image: ui:0.1
     build:
       context: ./app
       dockerfile: Dockerfile
